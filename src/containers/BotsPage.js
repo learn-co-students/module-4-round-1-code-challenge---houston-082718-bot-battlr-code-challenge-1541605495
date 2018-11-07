@@ -8,7 +8,9 @@ class BotsPage extends React.Component {
     super()
     this.state = {
       bots: [],
-      army: []
+      army: [],
+      bot: {},
+      botSpecs: false
     }
   }
 
@@ -20,14 +22,10 @@ class BotsPage extends React.Component {
 
   handleClick = (clickedBot, container) => {
     if (container === "BotCollection") {
-      const foundBot = this.state.army.filter(bot => {
-        return bot.id === clickedBot.id
+      this.setState({
+        bot: clickedBot,
+        botSpecs: true
       })
-
-      if (foundBot.length === 0) {
-        this.setState({army: [...this.state.army, clickedBot]})
-      }
-      
     }
     else {
       const newArmy = this.state.army.filter(bot => {
@@ -38,12 +36,36 @@ class BotsPage extends React.Component {
     }
   }
 
+  handleClickBack = () => {
+    this.setState({
+      bot: {},
+      botSpecs: false
+    })
+  }
+
+  handleClickEnlist = (clickedBot) => {
+    const foundBot = this.state.army.filter(bot => {
+      return bot.id === clickedBot.id
+    })
+
+    if (foundBot.length === 0) {
+      this.setState({army: [...this.state.army, clickedBot]})
+    }
+  }
+
   render() {
     return (
       <div>
         {/* put your components here */}
         <YourBotArmy army={this.state.army} handleClick={this.handleClick} />
-        <BotCollection bots={this.state.bots} handleClick={this.handleClick} />
+        <BotCollection 
+          bots={this.state.bots} 
+          handleClick={this.handleClick} 
+          bot={this.state.bot} 
+          botSpecs={this.state.botSpecs}
+          handleClickBack={this.handleClickBack}
+          handleClickEnlist={this.handleClickEnlist}
+        />
       </div>
     );
   }
