@@ -1,4 +1,5 @@
 import React from "react";
+import { randomName } from "../funtimes";
 
 const BotSpecs = props => {
   let { bot, goBack, enlist } = props;
@@ -31,7 +32,7 @@ const BotSpecs = props => {
             />
           </div>
           <div className="four wide column">
-            <h2>Name: {bot.name}</h2>
+            <h2>Name: {`${randomName(bot.id)} ${bot.name}`}</h2>
             <p>
               <strong>Catchphrase: </strong>
               {bot.catchphrase}

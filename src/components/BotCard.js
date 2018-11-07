@@ -1,4 +1,5 @@
 import React from "react";
+import { randomName } from "../funtimes";
 
 const BotCard = props => {
   const { bot, recruited } = props;
@@ -30,7 +31,7 @@ const BotCard = props => {
         </div>
         <div className="content">
           <div className="header">
-            {bot.name} {botType}
+            {`${randomName(bot.id)} ${bot.name}`} {botType}
           </div>
 
           <div className="meta text-wrap">
