@@ -3,6 +3,8 @@ import React from "react";
 const BotSpecs = props => {
   let { bot } = props;
 
+  console.log("BotSpecsProps", props);
+
   let botType;
 
   switch (bot.bot_class) {
@@ -58,21 +60,12 @@ const BotSpecs = props => {
                 </div>
               </div>
             </div>
-            <button
-              className="ui button fluid"
-              onClick={() =>
-                console.log('connect this to a function that shows all bots')
-              }
-            >
+            <button className="ui button fluid" onClick={props.onClickGoBack}>
               Go Back
             </button>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
-              }
+              onClick={() => props.onClickBot(bot)}
             >
               Enlist
             </button>
@@ -81,7 +74,6 @@ const BotSpecs = props => {
       </div>
     </div>
   );
-
 };
 
 export default BotSpecs;
