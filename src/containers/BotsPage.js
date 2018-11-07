@@ -1,12 +1,15 @@
 import React from "react";
 import BotCollection from "../containers/BotCollection"
 import YourBotArmy from "../containers/YourBotArmy"
+import BotSpecs from "../components/BotSpecs"
 
 class BotsPage extends React.Component {
   //start here with your code for step one
   state = {
     bots: [],
-    army: []
+    army: [],
+    bot: {},
+    toggle: false
 	}
 
 	componentWillMount() {
@@ -14,15 +17,10 @@ class BotsPage extends React.Component {
 		.then(r => r.json())
 		.then(bots => this.setState({ bots }))
   }
-  
+
   handleClick = (bot) => {
-    if ([...this.state.army].find(b => b.id === bot.id) === undefined) {
-      this.setState({
-        army: [...this.state.army, bot]
-      })
-    } else {
-      alert('You already have this bot in your army!')
-    } 
+    this.setState({ bot,
+    toggle: !this.state.toggle })
   }
 
   handleRemoveClick = (bot) => {
@@ -31,12 +29,28 @@ class BotsPage extends React.Component {
     })
   }
 
+  handleEnlist = (bot) => {
+    if ([...this.state.army].find(b => b.id === bot.id) === undefined) {
+      this.setState({
+        army: [...this.state.army, bot]
+      })
+      this.handleClick()
+    } else {
+      alert('You already have this bot in your army!')
+    } 
+  }
+
   render() {
-    const { bots, army } = this.state
+    const { bots, army, bot, toggle } = this.state
+    let botCollection
+    let botSpecs
+    toggle ? botCollection = null : botCollection = <BotCollection bots={bots} handleClick={this.handleClick} />
+    toggle ? botSpecs = <BotSpecs bot={bot} handleEnlist={this.handleEnlist} handleGoBack={this.handleClick} /> : botSpecs = null
     return (
       <div>
         <YourBotArmy army={army} handleClick={this.handleRemoveClick} />
-        <BotCollection bots={bots} handleClick={this.handleClick} />
+        {botSpecs}
+        {botCollection}
       </div>
     );
   }
