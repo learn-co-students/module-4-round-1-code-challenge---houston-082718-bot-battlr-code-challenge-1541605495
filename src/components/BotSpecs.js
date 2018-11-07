@@ -1,7 +1,8 @@
 import React from "react";
+import { randomName } from "../funtimes";
 
 const BotSpecs = props => {
-  let { bot } = props;
+  let { bot, goBack, enlist } = props;
 
   let botType;
 
@@ -31,7 +32,7 @@ const BotSpecs = props => {
             />
           </div>
           <div className="four wide column">
-            <h2>Name: {bot.name}</h2>
+            <h2>Name: {`${randomName(bot.id)} ${bot.name}`}</h2>
             <p>
               <strong>Catchphrase: </strong>
               {bot.catchphrase}
@@ -60,18 +61,14 @@ const BotSpecs = props => {
             </div>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log('connect this to a function that shows all bots')
-              }
+              onClick={goBack}
             >
               Go Back
             </button>
             <button
               className="ui button fluid"
               onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
+                enlist(bot.id)
               }
             >
               Enlist

@@ -1,7 +1,8 @@
 import React from "react";
+import { randomName } from "../funtimes";
 
 const BotCard = props => {
-  const { bot } = props;
+  const { bot, recruited } = props;
 
   let botType;
 
@@ -20,18 +21,17 @@ const BotCard = props => {
   }
 
   return (
-    <div className="ui column">
+    <div onClick={() => props.onClick(bot.id)} className="ui column">
       <div
-        className="ui card"
+        className= {recruited ? "ui card selected-bot" : "ui card"}
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
         </div>
         <div className="content">
           <div className="header">
-            {bot.name} {botType}
+            {`${randomName(bot.id)} ${bot.name}`} {botType}
           </div>
 
           <div className="meta text-wrap">

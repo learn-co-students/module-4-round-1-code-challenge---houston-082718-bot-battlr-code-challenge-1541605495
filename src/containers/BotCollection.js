@@ -1,15 +1,12 @@
 import React from "react";
 import BotCard from "../components/BotCard";
 
-class BotCollection extends React.Component {
-  //your code here
-
+export default class BotCollection extends React.Component {
   render(){
   	return (
   	  <div className="ui four column grid">
     		<div className="row">
-    		  {/*...and here..*/}
-    		  Collection of all bots
+    		  {this.props.bots.map(bot => <BotCard key={bot.id} bot={bot} recruited={this.props.recruitedBots[bot.id]} onClick={this.props.onClick}></BotCard>)}
     		</div>
   	  </div>
   	);
@@ -17,4 +14,4 @@ class BotCollection extends React.Component {
 
 };
 
-export default BotCollection;
+// https://bot-battler-api.herokuapp.com/api/v1/bots
