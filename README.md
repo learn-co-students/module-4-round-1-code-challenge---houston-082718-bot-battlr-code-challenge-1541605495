@@ -13,7 +13,7 @@ All of the code to style the page has been written for you, meaning that you sho
 
 `BotCollection` and `YourBotArmy` are container components. `BotCollection` is where all the bots will be displayed, while `YourBotArmy` (the green portion on the top of the screen) will only display the bots that have been selected by the user.
 
-`BotPage` is the highest component below App, and serves as the main container for all of the pieces of the page.
+`BotsPage` is the highest component below App, and serves as the main container for all of the pieces of the page.
 
 
 
