@@ -5,7 +5,7 @@ class YourBotArmy extends React.Component {
   //your bot army code here...
 
   render() {
-    const { bots, changeEnlist } = this.props;
+    const { bots, changeEnlist, examineStats } = this.props;
 
     return (
       <div className="ui segment inverted olive bot-army">
@@ -14,7 +14,12 @@ class YourBotArmy extends React.Component {
             {/*...and here...*/}
             {bots.filter(bot => bot.enlisted).map(bot => {
               return (
-                <BotCard key={bot.id} bot={bot} changeEnlist={changeEnlist} />
+                <BotCard
+                  key={bot.id}
+                  bot={bot}
+                  changeEnlist={changeEnlist}
+                  examineStats={examineStats}
+                />
               );
             })}
           </div>

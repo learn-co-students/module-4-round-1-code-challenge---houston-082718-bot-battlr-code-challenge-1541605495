@@ -1,7 +1,7 @@
 import React from "react";
 
 const BotCard = props => {
-  const { bot, changeEnlist } = props;
+  const { bot, examineStats, changeEnlist } = props;
 
   let botType;
 
@@ -21,7 +21,11 @@ const BotCard = props => {
 
   return (
     <div className="ui column">
-      <div className="ui card" key={bot.id} onClick={() => changeEnlist(bot)}>
+      <div
+        className="ui card"
+        key={bot.id}
+        onClick={() => (bot.enlisted ? changeEnlist(bot) : examineStats(bot))}
+      >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
         </div>

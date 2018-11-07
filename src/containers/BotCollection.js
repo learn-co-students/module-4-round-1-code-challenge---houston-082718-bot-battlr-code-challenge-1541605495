@@ -5,7 +5,7 @@ class BotCollection extends React.Component {
   //your code here
 
   render() {
-    const { bots, changeEnlist } = this.props;
+    const { bots, examineStats, changeEnlist } = this.props;
     return (
       <div className="ui four column grid">
         <div className="row">
@@ -13,7 +13,12 @@ class BotCollection extends React.Component {
           {bots.map(bot => {
             if (!bot.enlisted) {
               return (
-                <BotCard key={bot.id} bot={bot} changeEnlist={changeEnlist} />
+                <BotCard
+                  key={bot.id}
+                  bot={bot}
+                  examineStats={examineStats}
+                  changeEnlist={changeEnlist}
+                />
               );
             }
           })}
