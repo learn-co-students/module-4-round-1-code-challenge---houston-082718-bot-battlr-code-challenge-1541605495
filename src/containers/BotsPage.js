@@ -8,7 +8,7 @@ class BotsPage extends React.Component {
     botIDs: []
   }
 
-  addToBotArmy = bot => {
+  addToBotArmy = (bot, clicked) => {
     let currentBots = this.state.armyBots
     let currentIDs = this.state.botIDs
 
@@ -17,7 +17,7 @@ class BotsPage extends React.Component {
         botIDs: [...currentIDs, bot.id],
         armyBots: [...currentBots, bot]
       })
-    } else {
+    } else if (currentIDs.includes(bot.id) && clicked) {
       const botIndex = currentBots.indexOf(bot)
       const idIndex = currentIDs.indexOf(bot.id)
       currentBots.splice(botIndex, 1)

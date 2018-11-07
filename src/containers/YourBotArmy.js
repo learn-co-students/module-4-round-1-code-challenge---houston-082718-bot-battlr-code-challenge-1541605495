@@ -2,7 +2,9 @@ import React from "react";
 import BotCard from "../components/BotCard";
 
 class YourBotArmy extends React.Component {
-  //your bot army code here...
+  state = {
+    clicked: true
+  }
 
   render(){
     return (
@@ -10,7 +12,7 @@ class YourBotArmy extends React.Component {
         <div className="ui five column grid">
           <div className="row bot-army-row">
             {this.props.bots.map(bot => {
-              return <BotCard key={bot.id} bot={bot} addToBotArmy={this.props.addToBotArmy}/>
+              return <BotCard key={bot.id} clicked={this.state.clicked} bot={bot} addToBotArmy={this.props.addToBotArmy}/>
             })}
             Your Bot Army
           </div>
