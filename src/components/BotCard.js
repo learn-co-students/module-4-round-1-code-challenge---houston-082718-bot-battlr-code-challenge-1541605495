@@ -1,7 +1,7 @@
 import React from "react";
 
 const BotCard = props => {
-  const { bot } = props;
+  const { bot, recruited } = props;
 
   let botType;
 
@@ -22,7 +22,7 @@ const BotCard = props => {
   return (
     <div onClick={() => props.onClick(bot.id)} className="ui column">
       <div
-        className="ui card"
+        className= {recruited ? "ui card selected-bot" : "ui card"}
         key={bot.id}
       >
         <div className="image">

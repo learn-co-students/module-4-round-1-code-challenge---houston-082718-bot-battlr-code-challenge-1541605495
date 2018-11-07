@@ -1,10 +1,11 @@
 import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
+import BotSpecs from "../components/BotSpecs"
 
 class BotsPage extends React.Component {
   async componentDidMount() {
-    this.setState({bots: [], recruitedBots: {}})
+    this.setState({bots: [], recruitedBots: {}, displayedBot: null})
     const botsJson = await fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
     this.setState({bots: await botsJson.json()})
   }
@@ -14,7 +15,13 @@ class BotsPage extends React.Component {
       return (
         <div>
           <YourBotArmy bots={this.state.bots} recruitedBots={this.state.recruitedBots} dismissBot={this.dismissBot}></YourBotArmy>
-          <BotCollection bots={this.state.bots} recruitBot={this.recruitBot}></BotCollection>
+          {this.state.displayedBot === null
+                                      ? <BotCollection bots={this.state.bots}
+                                                       recruitedBots={this.state.recruitedBots}
+                                                       onClick={this.examineBot}/>
+                                      : <BotSpecs bot={this.state.bots.find(bot => bot.id === this.state.displayedBot)}
+                                                  goBack={this.cancelExamine}
+                                                  enlist={this.recruitBot}/>}
         </div>
       );
     } else {
@@ -22,10 +29,18 @@ class BotsPage extends React.Component {
     }
   }
 
+  examineBot = (botId) => {
+    this.setState({displayedBot: botId})
+  }
+
+  cancelExamine = () => {
+    this.setState({displayedBot: null})
+  }
+
   recruitBot = (botId) => {
     const newRecruitedBots = {...this.state.recruitedBots}
     newRecruitedBots[botId] = true
-    this.setState({recruitedBots: newRecruitedBots})
+    this.setState({recruitedBots: newRecruitedBots, displayedBot: null})
   }
 
   dismissBot = (botId) => {

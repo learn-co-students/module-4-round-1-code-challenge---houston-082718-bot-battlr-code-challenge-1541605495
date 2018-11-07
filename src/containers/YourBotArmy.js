@@ -6,7 +6,7 @@ class YourBotArmy extends React.Component {
     const bots = []
     for (const botId in this.props.recruitedBots) {
       bots.push(<BotCard key={botId}
-                         bot={this.props.bots.find(bot => bot.id === parseInt(botId))}
+                         bot={this.props.bots.find(bot => bot.id === parseInt(botId, 10))}
                          onClick={this.props.dismissBot} />)
     }
 

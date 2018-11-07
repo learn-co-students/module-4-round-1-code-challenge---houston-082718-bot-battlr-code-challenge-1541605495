@@ -6,7 +6,7 @@ export default class BotCollection extends React.Component {
   	return (
   	  <div className="ui four column grid">
     		<div className="row">
-    		  {this.props.bots.map(bot => <BotCard key={bot.id} bot={bot} onClick={this.props.recruitBot}></BotCard>)}
+    		  {this.props.bots.map(bot => <BotCard key={bot.id} bot={bot} recruited={this.props.recruitedBots[bot.id]} onClick={this.props.onClick}></BotCard>)}
     		</div>
   	  </div>
   	);
