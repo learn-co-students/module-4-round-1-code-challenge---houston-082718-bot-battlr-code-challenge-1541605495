@@ -1,7 +1,7 @@
 import React from "react";
 
 const BotCard = props => {
-  const { bot } = props;
+  const { bot, handleBotClick } = props;
 
   let botType;
 
@@ -18,16 +18,12 @@ const BotCard = props => {
     default:
       botType = <div />;
   }
-
   return (
+
     <div className="ui column">
-      <div
-        className="ui card"
-        key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
-      >
+      <div className="ui card" key={bot.id} onClick={handleBotClick}  >
         <div className="image">
-          <img alt="oh no!" src={bot.avatar_url} />
+          <img alt={bot.id} src={bot.avatar_url} />
         </div>
         <div className="content">
           <div className="header">
