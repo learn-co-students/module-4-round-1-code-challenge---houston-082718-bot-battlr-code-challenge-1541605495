@@ -4,17 +4,23 @@ import BotCard from "../components/BotCard";
 class BotCollection extends React.Component {
   //your code here
 
-  render(){
-  	return (
-  	  <div className="ui four column grid">
-    		<div className="row">
-    		  {/*...and here..*/}
-    		  Collection of all bots
-    		</div>
-  	  </div>
-  	);
+  render() {
+    const { bots, changeEnlist } = this.props;
+    return (
+      <div className="ui four column grid">
+        <div className="row">
+          {/*...and here..*/}
+          {bots.map(bot => {
+            if (!bot.enlisted) {
+              return (
+                <BotCard key={bot.id} bot={bot} changeEnlist={changeEnlist} />
+              );
+            }
+          })}
+        </div>
+      </div>
+    );
   }
-
-};
+}
 
 export default BotCollection;
