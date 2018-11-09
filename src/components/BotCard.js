@@ -1,27 +1,27 @@
-import React from "react";
+import React from "react"
 
 const BotCard = props => {
-  const { bot, handleBotClick } = props;
+  const { bot, handleEnlist } = props
 
-  let botType;
+  let botType
 
   switch (bot.bot_class) {
     case "Assault":
-      botType = <i className="icon military" />;
-      break;
+      botType = <i className="icon military" />
+      break
     case "Defender":
-      botType = <i className="icon shield" />;
-      break;
+      botType = <i className="icon shield" />
+      break
     case "Support":
-      botType = <i className="icon ambulance" />;
-      break;
+      botType = <i className="icon ambulance" />
+      break
     default:
-      botType = <div />;
+      botType = <div />
   }
   return (
 
     <div className="ui column">
-      <div className="ui card" key={bot.id} onClick={handleBotClick}  >
+      <div className="ui card" onClick={() => handleEnlist(bot)}  >
         <div className="image">
           <img alt={bot.id} src={bot.avatar_url} />
         </div>
@@ -51,8 +51,8 @@ const BotCard = props => {
         </div>
       </div>
     </div>
-  );
+  )
 
-};
+}
 
-export default BotCard;
+export default BotCard

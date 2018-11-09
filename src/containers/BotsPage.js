@@ -3,63 +3,39 @@ import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
 
 class BotsPage extends React.Component {
-
     state = {
         bots: [],
-        botArmy: []
+        army: []
     }
 
     componentDidMount() {
         fetch('https://bot-battler-api.herokuapp.com/api/v1/bots')
-        .then(r => r.json())
-        .then(r => this.setState({bots: r}))
+        .then(r=> r.json())
+        .then(r=> this.setState({ bots: r }))
     }
 
-    handleBotClick = (event) => {
-        event.preventDefault()
-        console.log(event.target)
-        const { bots, botArmy } = this.state
-        const id = Number(event.target.alt)
-        const bot = this.state.bots.filter(bot => bot.id === id)
-
-        if (botArmy.length === 0) {
-            this.setState({ botArmy: [...this.state.botArmy, bot] })
-        } else {
-            Object.values(this.state.botArmy).map(botObj=> {
-                Object.values(botObj).map(b=> {
-                    if (b.id === id) {
-                        return
-                    } else {
-                        this.setState({ botArmy: [...botArmy, bot] })
-                    }
-                })
-
-            })
-        }
+    handleEnlist = (bot) => {
+        this.state.army.includes(bot) ? bot : this.setState({ army: [...this.state.army, bot] })
     }
 
-    handleRemove = (event) => {
-        event.preventDefault()
-        const id = Number(event.target.id)
+    handleRemove = (bot) => {
+        const { army } = this.state
+        const removeBot = army.find(b => b === bot)
+        const index  = army.indexOf(removeBot)
+        army.splice(index, 1)
+        const newArmy = army
+        this.setState({ army: newArmy })
 
-        Object.values(this.state.botArmy).map((botObj, index) => {
-            Object.values(botObj).map(bot=> {
-                if (bot.id === id) {
-                    this.state.botArmy.splice(index, 1)
-                    const newArmy = this.state.botArmy
-                    this.setState({ botArmy: newArmy })
-                }
-            })
-        })
     }
 
     render() {
-        return (<div>
-            <BotCollection bots={this.state.bots} handleBotClick={this.handleBotClick}/>
-            <YourBotArmy bots={this.state.botArmy} handleRemove={this.handleRemove}/>
-        </div>);
+        return (
+            <div>
+                <YourBotArmy army={this.state.army} handleRemove={this.handleRemove} />
+                <BotCollection bots={this.state.bots} handleEnlist={this.handleEnlist}/>
+            </div>
+        )
     }
-
 }
 
-export default BotsPage;
+export default BotsPage
