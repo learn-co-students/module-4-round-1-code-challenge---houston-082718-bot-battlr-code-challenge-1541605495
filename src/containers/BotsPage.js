@@ -1,11 +1,13 @@
 import React from "react"
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
+import BotSpecs from "../components/BotSpecs"
 
 class BotsPage extends React.Component {
     state = {
         bots: [],
-        army: []
+        army: [],
+        clicked: {boolean: false, bot: null}
     }
 
     componentDidMount() {
@@ -14,7 +16,12 @@ class BotsPage extends React.Component {
         .then(r=> this.setState({ bots: r }))
     }
 
+    handleProfile = (bot) => {
+        this.setState({ clicked: {boolean: !this.state.clicked.boolean, bot: bot} })
+    }
+
     handleEnlist = (bot) => {
+        console.log(bot)
         this.state.army.includes(bot) ? bot : this.setState({ army: [...this.state.army, bot] })
     }
 
@@ -28,11 +35,17 @@ class BotsPage extends React.Component {
 
     }
 
+    handleBack = () => {
+        this.setState({ clicked: {boolean: !this.state.clicked.boolean, bot: null} })
+    }
+
     render() {
         return (
             <div>
                 <YourBotArmy army={this.state.army} handleRemove={this.handleRemove} />
-                <BotCollection bots={this.state.bots} handleEnlist={this.handleEnlist}/>
+                {this.state.clicked.boolean
+                    ? <BotSpecs bot={this.state.clicked.bot} handleEnlist={this.handleEnlist} handleBack={this.handleBack}/>
+                : <BotCollection bots={this.state.bots} handleProfile={this.handleProfile}/>}
             </div>
         )
     }

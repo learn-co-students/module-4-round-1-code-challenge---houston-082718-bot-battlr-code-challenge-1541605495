@@ -1,7 +1,7 @@
 import React from "react"
 
 const BotCard = props => {
-  const { bot, handleEnlist } = props
+  const { bot, handleProfile } = props
 
   let botType
 
@@ -21,7 +21,7 @@ const BotCard = props => {
   return (
 
     <div className="ui column">
-      <div className="ui card" onClick={() => handleEnlist(bot)}  >
+      <div className="ui card" onClick={() => handleProfile(bot)}  >
         <div className="image">
           <img alt={bot.id} src={bot.avatar_url} />
         </div>
