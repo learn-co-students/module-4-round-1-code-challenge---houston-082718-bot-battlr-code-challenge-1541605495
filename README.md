@@ -15,13 +15,10 @@ All of the code to style the page has been written for you, meaning that you sho
 
 `BotPage` is the highest component below App, and serves as the main container for all of the pieces of the page.
 
-
-
-
-## Instructions
+## Instructions X
 To start, run `npm install && npm start` to get the app up and running. Follow along with these steps, making sure to read all of the instructions before beginning to code.
 
-#### 1.  Fetching Bots
+#### 1.  Fetching Bots X
 
 Work on fetching data from this API: https://bot-battler-api.herokuapp.com/api/v1/bots. The response should contain an array of bot objects that are structured as follows:
 
@@ -43,12 +40,12 @@ Work on fetching data from this API: https://bot-battler-api.herokuapp.com/api/v
 Based on the current structure of the app, think about where this array of bots needs to be stored.
 
 
-#### 2.  Indexing bots
+#### 2.  Indexing bots X
 
 After you have fetched the bots, work on rendering them into `BotCollection`, which should be a child of `BotsPage`. A component called `BotCard` has been provided to you to display the information about an individual bot in a list format.
 
 
-#### 3.  Enlisting bots
+#### 3.  Enlisting bots X
 
 Once the list is complete, work on the functionality of enlisting bots into your army. Clicking a card should add a bot to the user's list of bots. Bots that have been chosen should be displayed within `YourBotArmy`, which should also be a child of `BotsPage`  (feel free to reuse `BotCard`). A bot should be enlisted only once. If you click on a bot in your army, that bot should be removed from your army.
 
@@ -66,7 +63,7 @@ If you have gotten this far, you have hit the checkpoint. Your app should look l
 Before proceeding to the next part of the challenge, __be sure to stage a commit at this point__. That way if your code breaks or you do not get to finish the next feature, we will be able to see that you were able to get up to this point.
 
 
-#### 4. Refactor
+#### 4. Refactor X
 
 Now that you have some of the functionality of your app, it's time to refactor the code. Rather than enlisting the bot into the army, clicking on the card should instead display a show view (`BotSpecs`) for that bot, which should replace `BotsCollection`. BotSpecs should have two buttons: one to go back to the list view and another to enlist that bot.
 
